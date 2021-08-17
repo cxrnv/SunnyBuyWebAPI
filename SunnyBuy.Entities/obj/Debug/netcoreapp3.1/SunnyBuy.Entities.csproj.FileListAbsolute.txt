@@ -1,0 +1,12 @@
+C:\Users\debora.maciel\Desktop\SunnyBuy\SunnyBuy\SunnyBuy.Entities\bin\Debug\netcoreapp3.1\SunnyBuy.Entities.deps.json
+C:\Users\debora.maciel\Desktop\SunnyBuy\SunnyBuy\SunnyBuy.Entities\bin\Debug\netcoreapp3.1\SunnyBuy.Entities.dll
+C:\Users\debora.maciel\Desktop\SunnyBuy\SunnyBuy\SunnyBuy.Entities\bin\Debug\netcoreapp3.1\SunnyBuy.Entities.pdb
+C:\Users\debora.maciel\Desktop\SunnyBuy\SunnyBuy\SunnyBuy.Entities\obj\Debug\netcoreapp3.1\SunnyBuy.Entities.AssemblyInfoInputs.cache
+C:\Users\debora.maciel\Desktop\SunnyBuy\SunnyBuy\SunnyBuy.Entities\obj\Debug\netcoreapp3.1\SunnyBuy.Entities.AssemblyInfo.cs
+C:\Users\debora.maciel\Desktop\SunnyBuy\SunnyBuy\SunnyBuy.Entities\obj\Debug\netcoreapp3.1\SunnyBuy.Entities.csproj.CoreCompileInputs.cache
+C:\Users\debora.maciel\Desktop\SunnyBuy\SunnyBuy\SunnyBuy.Entities\obj\Debug\netcoreapp3.1\SunnyBuy.Entities.dll
+C:\Users\debora.maciel\Desktop\SunnyBuy\SunnyBuy\SunnyBuy.Entities\obj\Debug\netcoreapp3.1\SunnyBuy.Entities.pdb
+C:\Users\debora.maciel\Desktop\SunnyBuy\SunnyBuy\SunnyBuy.Entities\bin\Debug\netcoreapp3.1\SunnyBuy.Enums.dll
+C:\Users\debora.maciel\Desktop\SunnyBuy\SunnyBuy\SunnyBuy.Entities\obj\Debug\netcoreapp3.1\SunnyBuy.Entities.csprojAssemblyReference.cache
+C:\Users\debora.maciel\Desktop\SunnyBuy\SunnyBuy\SunnyBuy.Entities\bin\Debug\netcoreapp3.1\SunnyBuy.Enums.pdb
+C:\Users\debora.maciel\Desktop\SunnyBuy\SunnyBuy\SunnyBuy.Entities\obj\Debug\netcoreapp3.1\SunnyBuy.Entities.csproj.CopyComplete
