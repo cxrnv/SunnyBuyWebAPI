@@ -19,19 +19,19 @@ namespace SunnyBuy.WebApi.Controllers
         [HttpGet("{clientId}")]
         public async Task<List<CartListModel>> Get(int clientId)
         {
-            return await cartService.Get(clientId);
+            return await cartService.GetCart(clientId);
         }
 
         [HttpPost("{clientId}/{productId}")]
         public async Task<bool> Post(int clientId, int productId)
         {
-            return await cartService.Post(clientId, productId);
+            return await cartService.PostCart(clientId, productId);
         }
 
-        [HttpPut()]
+        [HttpDelete()]
         public async Task<bool> Put([FromBody]PutCartModel model)
         {
-            return await cartService.Put(model);
+            return await cartService.PutCart(model);
         }
     }
 }

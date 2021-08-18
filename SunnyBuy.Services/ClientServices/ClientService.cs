@@ -35,6 +35,8 @@ namespace SunnyBuy.Services
 
             return true;
         }
+        
+        /***/
         public async Task<bool> Verifier(PostModel model)
         {
             if (await context.Client
@@ -47,6 +49,8 @@ namespace SunnyBuy.Services
                 return false;
             }
         }
+
+        /** pOST **/
         public async Task<bool> Login(LoginModel model)
         {
             if (await context.Client
@@ -72,7 +76,7 @@ namespace SunnyBuy.Services
                     Phone = c.Phone
                 }).ToListAsync();
         }
-        public async Task<GetModel> GetCpf(string cpf)
+        public async Task<GetModel> Get(string cpf)
         {
             return await context.Client
             .Where(a => a.ClientCpf == cpf && !a.Disabled)

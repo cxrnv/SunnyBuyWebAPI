@@ -17,6 +17,12 @@ namespace SunnyBuy.WebApi.Controllers
             this.clientService = clientService;
         }
 
+        [HttpPost()]
+        public async Task<bool> Post(PostModel model)
+        {
+            return await clientService.Post(model);
+        }
+
         [HttpGet()]
         public async Task<bool> Login([FromBody] LoginModel model)
         {
@@ -29,22 +35,16 @@ namespace SunnyBuy.WebApi.Controllers
             return await clientService.Verifier(model);
         }
 
-        [HttpPost()]
-        public async Task<bool> Post(PostModel model)
-        {
-            return await clientService.Post(model);
-        }
-
         [HttpGet("clients")]
         public async Task<List<GetModel>> GetAll()
         {
             return await clientService.GetAll();
         }
 
-        [HttpGet("client/{cpf}")]
-        public async Task<GetModel> GetCpf(string cpf)
+        [HttpGet("{cpf}")]
+        public async Task<GetModel> Get(string cpf)
         {
-            return await clientService.GetCpf(cpf);
+            return await clientService.Get(cpf);
         }
 
         [HttpPut()]
