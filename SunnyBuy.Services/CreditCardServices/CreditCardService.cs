@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using SunnyBuy.Domain;
 using System.Linq;
+using System;
 
 namespace SunnyBuy.Services.CreditCardServices
 {
@@ -19,7 +20,7 @@ namespace SunnyBuy.Services.CreditCardServices
         public async Task<List<CreditCardListModel>> GetExistingCardsClient(int clientId)
         {
             return await context.CreditCard
-                .Where(a => a.ClientId == clientId)
+                .Where(a => a.ClientId == clientId && !a.Deleted)
                 .Select(b => new CreditCardListModel
                 {
                     ClientId = b.ClientId,
@@ -48,7 +49,25 @@ namespace SunnyBuy.Services.CreditCardServices
 
             return true;
         }
-        public async Task<bool> Delete(int clientId, int creditCardId)
+
+        public async Task<bool> Put(int clientId, int creditCardId, bool deleted)
+        {
+            var creditCard = context.CreditCard
+                .Where(a => a.ClientId == clientId && a.CreditCardId == creditCardId && a.Deleted == !deleted)
+               .FirstOrDefault();
+               
+            if(creditCard == null)
+                throw new Exception("This card doesn't exist");
+
+            creditCard.Deleted = deleted;
+
+            context.CreditCard.UpdateRange();
+            await context.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> DeleteCreditCard(int clientId, int creditCardId)
         {
             var creditCard = context.CreditCard
                 .Where(a => a.ClientId == clientId && a.CreditCardId == creditCardId)

@@ -11,6 +11,7 @@ namespace SunnyBuy.Domain
         public string Number { get; set; }
         public string DueDate { get; set; }
         public string SecurityCode { get; set; }
+        public bool Deleted { get; set; }
 
         public int ClientId { get; set; }
 
