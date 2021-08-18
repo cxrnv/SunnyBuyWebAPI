@@ -27,13 +27,13 @@ namespace SunnyBuy.WebApi.Controllers
         [HttpGet("category/{categoryEnum}")]
         public async Task<List<ListModel>> GetProductsCategory(CategoryEnum categoryEnum)
         {
-            return await productService.GetCategory(categoryEnum);
+            return await productService.GetProductsCategory(categoryEnum);
         }
 
         [HttpGet("product/{productId}")]
         public async Task<GetModel> Get(int productId)
         {
-            return await productService.Get(productId);
+            return await productService.GetProduct(productId);
         }
     }
 }

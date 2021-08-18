@@ -20,19 +20,19 @@ namespace SunnyBuy.WebApi.Controllers
         [HttpPost()]
         public async Task<bool> Post(PostModel model)
         {
-            return await clientService.Post(model);
+            return await clientService.PostClient(model);
         }
 
-        [HttpGet()]
-        public async Task<bool> Login([FromBody] LoginModel model)
+        [HttpPost("login/{email}/{password}")]
+        public async Task<bool> Login( string email, string password)
         {
-            return await clientService.Login(model);
+            return await clientService.Login(email, password);
         }
 
         [HttpGet("verifier")]
         public async Task<bool> Verifier(PostModel model)
         {
-            return await clientService.Verifier(model);
+            return await clientService.ExistingClientVerifier(model);
         }
 
         [HttpGet("clients")]
@@ -44,19 +44,19 @@ namespace SunnyBuy.WebApi.Controllers
         [HttpGet("{cpf}")]
         public async Task<GetModel> Get(string cpf)
         {
-            return await clientService.Get(cpf);
+            return await clientService.GetClient(cpf);
         }
 
         [HttpPut()]
         public async Task<bool> Put([FromBody]PutClientModel model)
         {
-            return await clientService.Put(model);
+            return await clientService.PutClientDisabled(model);
         }
 
         [HttpDelete("{cpf}")]
         public async Task<bool> Delete(string cpf)
         {
-            return await clientService.Delete(cpf);
+            return await clientService.DeleteClient(cpf);
         }
     }
 }

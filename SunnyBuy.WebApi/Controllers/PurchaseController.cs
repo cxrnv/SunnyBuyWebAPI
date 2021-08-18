@@ -20,13 +20,13 @@ namespace SunnyBuy.WebApi.Controllers
         [HttpGet("{clientId}")]
         public async Task<List<ListModel>> Get(int clientId)
         {
-            return await purchaseService.Get(clientId);
+            return await purchaseService.GetPurchaseComplete(clientId);
         }
         
         [HttpPost()]
         public async Task<bool> Post(ListModel model)
         {
-            return await purchaseService.Post(model);
+            return await purchaseService.PostPurchase(model);
         }
     }
 }

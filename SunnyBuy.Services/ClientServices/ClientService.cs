@@ -16,9 +16,9 @@ namespace SunnyBuy.Services
         {
             this.context = context;
         }
-        public async Task<bool> Post(PostModel model)
+        public async Task<bool> PostClient(PostModel model)
         {
-            await Verifier(model);
+            await ExistingClientVerifier(model);
 
             var client = new Client
             {
@@ -35,9 +35,10 @@ namespace SunnyBuy.Services
 
             return true;
         }
-        
-        /***/
-        public async Task<bool> Verifier(PostModel model)
+
+        /* I persisted the model in Verifier because the model I use in it
+         * is directly linked to my Post, so I use the same parameter for both*/
+        public async Task<bool> ExistingClientVerifier(PostModel model)
         {
             if (await context.Client
                  .AnyAsync(e => e.Email == model.Email || e.ClientCpf == model.Cpf))
@@ -50,11 +51,10 @@ namespace SunnyBuy.Services
             }
         }
 
-        /** pOST **/
-        public async Task<bool> Login(LoginModel model)
+        public async Task<bool> Login(string email, string password)
         {
             if (await context.Client
-                 .AnyAsync(e => e.Email == model.Email && e.Password == model.Password))
+                 .AnyAsync(e => e.Email == email && e.Password == password))
             {
                 return true;
             }
@@ -63,6 +63,7 @@ namespace SunnyBuy.Services
                 return false;
             }
         }
+
         public async Task<List<GetModel>> GetAll()
         {
             return await context.Client
@@ -76,7 +77,8 @@ namespace SunnyBuy.Services
                     Phone = c.Phone
                 }).ToListAsync();
         }
-        public async Task<GetModel> Get(string cpf)
+
+        public async Task<GetModel> GetClient(string cpf)
         {
             return await context.Client
             .Where(a => a.ClientCpf == cpf && !a.Disabled)
@@ -89,7 +91,8 @@ namespace SunnyBuy.Services
                 Phone = c.Phone
             }).FirstOrDefaultAsync();
         }
-        public async Task<bool> Delete(string cpf)
+
+        public async Task<bool> DeleteClient(string cpf)
         {
             var client = context.Client
                 .Where(a => a.ClientCpf == cpf)
@@ -100,7 +103,8 @@ namespace SunnyBuy.Services
 
             return true;
         }
-        public async Task<bool> Put(PutClientModel model)
+
+        public async Task<bool> PutClientDisabled(PutClientModel model)
         {
             var client = context.Client
                 .FirstOrDefault(a => a.ClientCpf == model.ClientCpf && model.Disabled);

@@ -15,6 +15,7 @@ namespace SunnyBuy.Services
         {
             this.context = context;
         }
+
         public async Task<List<ListModel>> GetAll()
         {
             return await context.Product
@@ -25,7 +26,8 @@ namespace SunnyBuy.Services
                     Name = p.Name
                 }).ToListAsync();
         }
-        public async Task<List<ListModel>> GetCategory(CategoryEnum categoryEnum)
+
+        public async Task<List<ListModel>> GetProductsCategory(CategoryEnum categoryEnum)
         {
             return await context.Product
                 .Where(a => a.CategoryEnum == categoryEnum)
@@ -36,7 +38,8 @@ namespace SunnyBuy.Services
                     Price = b.Price
                 }).ToListAsync();
         }
-        public async Task<GetModel> Get(int productId)
+
+        public async Task<GetModel> GetProduct(int productId)
         {
             return await context.Product
                 .Where(a => a.ProductId == productId)

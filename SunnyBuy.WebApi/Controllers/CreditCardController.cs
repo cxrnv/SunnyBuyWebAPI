@@ -20,22 +20,14 @@ namespace SunnyBuy.WebApi.Controllers
         [HttpPost()]
         public async Task<bool> Post(CreditCardPostModel model)
         {
-            return await creditCardService.Post(model);
+            return await creditCardService.PostCreditCard(model);
         }
 
         [HttpGet("clientId/{clientId}")]
-        public async Task<List<CreditCardListModel>> ExistingCard(int clientId)
+        public async Task<List<CreditCardListModel>> ExistingCards(int clientId)
         {
-            return await creditCardService.ExistingCard(clientId);
+            return await creditCardService.GetExistingCardsClient(clientId);
         }
-
-        //** **/
-        [HttpGet("{creditCardId}")]
-        public async Task<List<CreditCardListModel>> Get(int creditCardId)
-        {
-            return await creditCardService.Get(creditCardId);
-        }
-
 
         [HttpDelete("{clientId}/{creditCardId}")]
         public async Task<bool> Delete(int clientId, int creditCardId)

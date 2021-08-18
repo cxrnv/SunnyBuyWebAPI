@@ -16,7 +16,7 @@ namespace SunnyBuy.Services.PurchaseServices
             this.context = context;
         }
 
-        public async Task<List<ListModel>> Get(int clientId)
+        public async Task<List<ListModel>> GetPurchaseComplete(int clientId)
         {
             return await context.Purchase
                 .Where(a => a.ClientId == clientId)
@@ -29,7 +29,8 @@ namespace SunnyBuy.Services.PurchaseServices
                     DatePurchase = b.DatePurchase
                 }).ToListAsync();
         }
-        public async Task<bool> Post(ListModel model)
+
+        public async Task<bool> PostPurchase(ListModel model)
         {
             var purchase = new Purchase
             {

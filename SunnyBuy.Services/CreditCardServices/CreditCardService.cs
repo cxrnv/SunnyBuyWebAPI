@@ -16,7 +16,7 @@ namespace SunnyBuy.Services.CreditCardServices
         {
             this.context = context;
         }
-        public async Task<List<CreditCardListModel>> ExistingCard(int clientId)
+        public async Task<List<CreditCardListModel>> GetExistingCardsClient(int clientId)
         {
             return await context.CreditCard
                 .Where(a => a.ClientId == clientId)
@@ -30,7 +30,7 @@ namespace SunnyBuy.Services.CreditCardServices
                     SecurityCode = b.SecurityCode
                 }).ToListAsync();
         }
-        public async Task<bool> Post(CreditCardPostModel model)
+        public async Task<bool> PostCreditCard(CreditCardPostModel model)
         {
             model.Validator();
 
@@ -47,22 +47,6 @@ namespace SunnyBuy.Services.CreditCardServices
             await context.SaveChangesAsync();
 
             return true;
-        }
-
-        public async Task<List<CreditCardListModel>> Get(int creditCardId)
-        {
-            return await context.CreditCard
-                .Where(a => a.CreditCardId == creditCardId)
-                .Select(b => new CreditCardListModel
-                {
-                    CreditCardId = b.CreditCardId,
-                    ClientId = b.ClientId,
-                    Operator = b.Operator,
-                    Number = b.Number,
-                    DueDate = b.DueDate,
-                    SecurityCode = b.SecurityCode
-                })
-                .ToListAsync();
         }
         public async Task<bool> Delete(int clientId, int creditCardId)
         {
