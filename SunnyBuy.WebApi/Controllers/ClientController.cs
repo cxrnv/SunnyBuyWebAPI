@@ -23,10 +23,10 @@ namespace SunnyBuy.WebApi.Controllers
             return await clientService.PostClient(model);
         }
 
-        [HttpPost("login/{email}/{password}")]
-        public async Task<bool> Login( string email, string password)
+        [HttpPost("login")]
+        public async Task<bool> Login(LoginModel model)
         {
-            return await clientService.Login(email, password);
+            return await clientService.Login(model);
         }
 
         [HttpGet("verifier")]

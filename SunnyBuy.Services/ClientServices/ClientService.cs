@@ -51,10 +51,10 @@ namespace SunnyBuy.Services
             }
         }
 
-        public async Task<bool> Login(string email, string password)
+        public async Task<bool> Login(LoginModel model)
         {
             if (await context.Client
-                 .AnyAsync(e => e.Email == email && e.Password == password))
+                 .AnyAsync(e => e.Email == model.Email && e.Password == model.Password))
             {
                 return true;
             }
