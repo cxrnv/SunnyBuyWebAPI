@@ -16,7 +16,7 @@ namespace SunnyBuy.Services.CartServices
             this.context = context;
         }
 
-        public async Task<List<CartListModel>> GetCart(int clientId)
+        public async Task<List<CartListModel>> GetCartListProducts(int clientId)
         {
             var products = new List<CartListModel>();
 
@@ -33,7 +33,7 @@ namespace SunnyBuy.Services.CartServices
                 DateInclude = b.DateInclude
             }).ToListAsync();
         }
-        public async Task<bool> PostCart(int clientId, int productId)
+        public async Task<bool> Checkout(int clientId, int productId)
         {
             var model = new Cart()
             {
