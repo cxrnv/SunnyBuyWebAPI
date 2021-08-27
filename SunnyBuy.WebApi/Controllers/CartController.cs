@@ -15,7 +15,7 @@ namespace SunnyBuy.WebApi.Controllers
         {
             this.cartService = cartService;
         }
-
+        
         [HttpGet("{clientId}")]
         public async Task<List<CartListModel>> Get(int clientId)
         {
@@ -27,7 +27,7 @@ namespace SunnyBuy.WebApi.Controllers
         {
             return await cartService.Checkout(clientId, productId);
         }
-
+        
         [HttpDelete()]
         public async Task<bool> Put([FromBody]PutCartModel model)
         {

@@ -15,7 +15,7 @@ namespace SunnyBuy.Services.CartServices
         {
             this.context = context;
         }
-
+        
         public async Task<List<CartListModel>> GetCartListProducts(int clientId)
         {
             var products = new List<CartListModel>();
