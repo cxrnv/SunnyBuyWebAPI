@@ -8,6 +8,7 @@ using SunnyBuy.Services.CreditCardServices.Models;
 namespace SunnyBuy.WebApi.Controllers
 {
     [Route("[controller]")]
+
     [ApiController]
     public class CreditCardController : Controller
     {
@@ -29,13 +30,13 @@ namespace SunnyBuy.WebApi.Controllers
             return await creditCardService.GetExistingCardsClient(clientId);
         }
 
-        [HttpDelete("{clientId}/{creditCardId}/{deleted}")]
-        public async Task<bool> Put(int clientId, int creditCardId, bool deleted)
+        [HttpDelete()]
+        public async Task<bool> Put(CreditCardPutModel model)
         {
-            return await creditCardService.Put(clientId, creditCardId, deleted);
+            return await creditCardService.Put(model);
         }
 
-            [HttpDelete("{clientId}/{creditCardId}")]
+        [HttpDelete("{clientId}/{creditCardId}")]
         public async Task<bool> DeleteCreditCard(int clientId, int creditCardId)
         {
             return await creditCardService.DeleteCreditCard(clientId, creditCardId);

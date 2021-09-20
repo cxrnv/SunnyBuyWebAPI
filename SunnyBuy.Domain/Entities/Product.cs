@@ -13,6 +13,7 @@ namespace SunnyBuy.Domain
         public int Quantity { get; set; }
         public int Rank { get; set; }
         public bool Deleted { get; set; }
+        public string Image { get; set; }
 
         [Column ("CategoryId")]
         public CategoryEnum CategoryEnum { get; set; }

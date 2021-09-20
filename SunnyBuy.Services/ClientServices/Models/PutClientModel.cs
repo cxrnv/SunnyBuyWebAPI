@@ -2,8 +2,7 @@
 {
     public class PutClientModel
     {
-        /* clientID*/
-        public string ClientCpf { get; set; }
+        public int ClientId { get; set; }
         public bool Disabled { get; set; }
     }
 }

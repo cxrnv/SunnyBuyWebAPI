@@ -22,31 +22,64 @@ namespace SunnyBuy.Services.CartServices
 
             var cart = context.Cart
                 .Include(a => a.Product)
-                .Where(a => a.ClientId == clientId && !a.Deleted);
+                .Where(a => a.ClientId == clientId && !a.Deleted && a.Sold == false);
 
             return products = await cart.Select(b => new CartListModel
             {
                 CartId = b.CartId,
                 ProductId = b.ProductId,
+                Detail = b.Product.Detail,
+                image = b.Product.Image,
                 Name = b.Product.Name,
                 Price = b.Product.Price,
-                DateInclude = b.DateInclude
-            }).ToListAsync();
+                DateInclude = b.DateInclude,
+            })
+            .ToListAsync();
         }
-        public async Task<bool> Checkout(int clientId, int productId)
+        public async Task<bool> Checkout(PostCartModel model)
         {
-            var model = new Cart()
+            var cartList = await context.Cart
+                .AnyAsync(a => a.ClientId == model.ClientId && a.ProductId == model.ProductId && !a.Deleted && !a.Sold);
+
+            if (cartList)
             {
-                ClientId = clientId,
-                ProductId = productId,
+                throw new Exception("This product already exists in your cart");
+            }
+
+            var cart = new Cart()
+            {
+                ClientId = model.ClientId,
+                ProductId = model.ProductId,
                 DateInclude = DateTime.Now,
-                Deleted = false
+                Deleted = false,
+                Sold = false
             };
 
-            await context.Cart.AddAsync(model);
+            await context.Cart.AddAsync(cart);
             await context.SaveChangesAsync();
 
             return true;
+        }
+        public async Task<decimal> Total(int clientId)
+        {
+            var items = await GetCartListProducts(clientId);
+            var total = new TotalCartModel();
+
+            var totalPrice = total.TotalPrice = items
+                .Where(item => item.Sold == false)
+                .Sum(item => item.Price * 1);
+
+            return totalPrice;
+        }
+        public async Task<int> Count(int clientId)
+        {
+            var items = await GetCartListProducts(clientId);
+            var count = new TotalCartModel();
+
+            var quantity = count.Count = items
+                .Count();
+
+            return quantity;
         }
         public async Task<bool> PutCart(PutCartModel model)
         {

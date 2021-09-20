@@ -49,24 +49,22 @@ namespace SunnyBuy.Services.CreditCardServices
 
             return true;
         }
-
-        public async Task<bool> Put(int clientId, int creditCardId, bool deleted)
+        public async Task<bool> Put(CreditCardPutModel model)
         {
             var creditCard = context.CreditCard
-                .Where(a => a.ClientId == clientId && a.CreditCardId == creditCardId && a.Deleted == !deleted)
+                .Where(a => a.ClientId == model.ClientId && a.CreditCardId == model.CreditCardId && a.Deleted == !model.Deleted)
                .FirstOrDefault();
                
             if(creditCard == null)
                 throw new Exception("This card doesn't exist");
 
-            creditCard.Deleted = deleted;
+            creditCard.Deleted = model.Deleted;
 
             context.CreditCard.UpdateRange();
             await context.SaveChangesAsync();
 
             return true;
         }
-
         public async Task<bool> DeleteCreditCard(int clientId, int creditCardId)
         {
             var creditCard = context.CreditCard

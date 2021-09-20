@@ -23,7 +23,8 @@ namespace SunnyBuy.Services
                 {
                     ProductId = p.ProductId,
                     Price = p.Price,
-                    Name = p.Name
+                    Name = p.Name,
+                    Image = p.Image
                 }).ToListAsync();
         }
 
@@ -35,7 +36,8 @@ namespace SunnyBuy.Services
                 {
                     ProductId = b.ProductId,
                     Name = b.Name,
-                    Price = b.Price
+                    Price = b.Price,
+                    Image = b.Image
                 }).ToListAsync();
         }
 
@@ -49,7 +51,8 @@ namespace SunnyBuy.Services
                     Name = c.Name,
                     Price = c.Price,
                     Detail = c.Detail,
-                    Quantity = c.Quantity
+                    Quantity = c.Quantity,
+                    image = c.Image
                 }).FirstOrDefaultAsync();
         }
     }

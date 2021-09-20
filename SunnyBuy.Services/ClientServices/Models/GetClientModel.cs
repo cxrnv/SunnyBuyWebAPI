@@ -1,8 +1,10 @@
 ﻿namespace SunnyBuy.Services.ClientServices.Models
 {
-    public class GetModel
+    public class GetClientModel
     {
-        public string Cpf { get; set; }
+        public int ClientId { get; set; }
+        public string Image { get; set; }
+        public string ClientCpf { get; set; }
         public bool Disabled { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wrRvbtPHDNOTLlwi1KNKh71uar3XmIkTo/WZWXbPYAjCAa9OtmF41AqroW4ghLRakJrQiBarcpLsvs4kmWGQ4Q==",
+  "dgSpecHash": "COpKKuwFgRTx9BAYujxj2ITRWm3cFIBMVUkJWeNXz9KJKzFBKGBzkg1h1czHWlJtqGZjBtooX6E6ecwIxiRd8g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\debora.maciel\\Desktop\\SunnyBuy\\SunnyBuy\\SunnyBuy.Services\\SunnyBuy.Services.csproj",
+  "projectFilePath": "C:\\Users\\debora.maciel\\Desktop\\SunnyBuy\\Back-End\\SunnyBuy\\SunnyBuy.Services\\SunnyBuy.Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\debora.maciel\\.nuget\\packages\\dynamitey\\2.0.9.136\\dynamitey.2.0.9.136.nupkg.sha512",
     "C:\\Users\\debora.maciel\\.nuget\\packages\\impromptuinterface\\7.0.1\\impromptuinterface.7.0.1.nupkg.sha512",

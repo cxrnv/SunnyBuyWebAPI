@@ -533,11 +533,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\debora.maciel\\Desktop\\SunnyBuy\\SunnyBuy\\SunnyBuy.Domain\\SunnyBuy.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\debora.maciel\\Desktop\\SunnyBuy\\Back-End\\SunnyBuy\\SunnyBuy.Domain\\SunnyBuy.Domain.csproj",
       "projectName": "SunnyBuy.Domain",
-      "projectPath": "C:\\Users\\debora.maciel\\Desktop\\SunnyBuy\\SunnyBuy\\SunnyBuy.Domain\\SunnyBuy.Domain.csproj",
+      "projectPath": "C:\\Users\\debora.maciel\\Desktop\\SunnyBuy\\Back-End\\SunnyBuy\\SunnyBuy.Domain\\SunnyBuy.Domain.csproj",
       "packagesPath": "C:\\Users\\debora.maciel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\debora.maciel\\Desktop\\SunnyBuy\\SunnyBuy\\SunnyBuy.Domain\\obj\\",
+      "outputPath": "C:\\Users\\debora.maciel\\Desktop\\SunnyBuy\\Back-End\\SunnyBuy\\SunnyBuy.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\debora.maciel\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -22,12 +22,9 @@ namespace SunnyBuy.Services
 
             var client = new Client
             {
-                ClientCpf = model.Cpf,
                 Name = model.Name,
                 Email = model.Email,
                 Password = model.Password,
-                Address = model.Address,
-                Phone = model.Phone
             };
 
             await context.Client.AddAsync(client);
@@ -41,9 +38,9 @@ namespace SunnyBuy.Services
         public async Task<bool> ExistingClientVerifier(PostModel model)
         {
             if (await context.Client
-                 .AnyAsync(e => e.Email == model.Email || e.ClientCpf == model.Cpf))
+                 .AnyAsync(e => e.Email == model.Email))
             {
-                throw new Exception("This email or cpf already exists");
+                throw new Exception("This email already exists");
             }
             else
             {
@@ -51,67 +48,101 @@ namespace SunnyBuy.Services
             }
         }
 
-        public async Task<bool> Login(LoginModel model)
+        public async Task<int> Login(LoginModel model)
         {
-            if (await context.Client
-                 .AnyAsync(e => e.Email == model.Email && e.Password == model.Password))
+            var login = await context.Client
+                .Where(e => e.Email == model.Email && e.Password == model.Password && !e.Disabled)
+                .FirstOrDefaultAsync();
+
+            if (login == null)
             {
-                return true;
+                return 0;
             }
-            else
-            {
-                return false;
-            }
+
+            return login.ClientId;
         }
 
-        public async Task<List<GetModel>> GetAll()
+        public async Task<List<GetClientModel>> GetAll()
         {
             return await context.Client
-                .Where(a => a.Disabled == false)
-                .Select(c => new GetModel
+                .Where(a => !a.Disabled)
+                .Select(c => new GetClientModel
                 {
-                    Cpf = c.ClientCpf,
+                    ClientId = c.ClientId,
+                    ClientCpf = c.ClientCpf,
                     Name = c.Name,
                     Email = c.Email,
                     Address = c.Address,
-                    Phone = c.Phone
+                    Phone = c.Phone,
+                    Image = c.Image
+                    
                 }).ToListAsync();
         }
 
-        public async Task<GetModel> GetClient(string cpf)
+        public async Task<List<GetClientModel>> GetClientsChat()
         {
+            var clients = await context.Message
+                .Select(c => c.ClientId)
+                .Distinct()
+                .ToListAsync();
+
             return await context.Client
-            .Where(a => a.ClientCpf == cpf && !a.Disabled)
-            .Select(c => new GetModel
-            {
-                Cpf = c.ClientCpf,
-                Name = c.Name,
-                Email = c.Email,
-                Address = c.Address,
-                Phone = c.Phone
-            }).FirstOrDefaultAsync();
+                .Where(a => !a.Disabled && clients.Any(c => c == a.ClientId))
+                .Select(c => new GetClientModel
+                {
+                    ClientId = c.ClientId,
+                    ClientCpf = c.ClientCpf,
+                    Name = c.Name,
+                    Email = c.Email,
+                    Address = c.Address,
+                    Phone = c.Phone,
+                    Image = c.Image
+                }).ToListAsync();
         }
 
-        public async Task<bool> DeleteClient(string cpf)
+        public async Task<GetClientModel> GetClient(int id)
         {
-            var client = context.Client
-                .Where(a => a.ClientCpf == cpf)
-                .Single();
-
-            context.Client.Remove(client);
-            await context.SaveChangesAsync();
-
-            return true;
+            return await context.Client
+            .Where(a => a.ClientId == id && !a.Disabled)
+            .Select(c => new GetClientModel
+            {
+                ClientCpf = c.ClientCpf,
+                Name = c.Name,
+                Password = c.Password,
+                Email = c.Email,
+                Address = c.Address,
+                Phone = c.Phone,
+                Image = c.Image
+            }).FirstOrDefaultAsync();
         }
 
         public async Task<bool> PutClientDisabled(PutClientModel model)
         {
             var client = context.Client
-                .FirstOrDefault(a => a.ClientCpf == model.ClientCpf && model.Disabled);
+                .FirstOrDefault(a => a.ClientId == model.ClientId && model.Disabled);
 
             client.Disabled = model.Disabled;
 
             context.Client.UpdateRange();
+            await context.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> EditClientData(EditClientModel model)
+        {
+            var client = context.Client
+                .FirstOrDefault(a => a.ClientId == model.ClientId);
+
+            client.ClientCpf = model.ClientCpf;
+            client.Name = model.Name;
+            client.Email = model.Email;
+            client.Password = model.Password;
+            client.Address = model.Address;
+            client.Phone = model.Phone;
+            client.Image = model.Image;
+
+            context.Client.Update(client);
             await context.SaveChangesAsync();
 
             return true;

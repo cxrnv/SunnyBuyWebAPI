@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SunnyBuy.Domain.Entities;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,9 +22,12 @@ namespace SunnyBuy.Domain
 
         [ForeignKey(nameof(ClientId))]
         public Client Client { get; set; }
-        public int CartId { get; set; }
 
-        [ForeignKey(nameof(CartId))]
-        public Cart Cart { get; set; }
+        public bool Complete { get; set; }
+        public int? CreditCardId { get; set; }
+
+        [ForeignKey(nameof(CreditCardId))]
+        public CreditCard CreditCard { get; set; }
+        public IList<Purchase_Cart> Purchase_Carts { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "T+JnPPisnCfZ9/SR+i84kAGDd9EuxGIO53o3mjLT0Dr3EutBn5DpNEFkvj1z5ikDOqhtzAT9sFg/e7gcJfJ2vg==",
+  "dgSpecHash": "aCYPZ4WaPjoQk6WRCGI0bcdZwmocjV0Xb7/iwDGfcG+eRsso4Zg0OdoS++WQhUqPvMQZv6NPYzIT25UFCMg5Tw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\debora.maciel\\Desktop\\SunnyBuy\\SunnyBuy\\SunnyBuy.Domain\\SunnyBuy.Domain.csproj",
+  "projectFilePath": "C:\\Users\\debora.maciel\\Desktop\\SunnyBuy\\Back-End\\SunnyBuy\\SunnyBuy.Domain\\SunnyBuy.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\debora.maciel\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.9\\microsoft.entityframeworkcore.5.0.9.nupkg.sha512",
     "C:\\Users\\debora.maciel\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.9\\microsoft.entityframeworkcore.abstractions.5.0.9.nupkg.sha512",

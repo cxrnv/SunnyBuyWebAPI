@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using SunnyBuy.Services.PurchaseServices;
 using SunnyBuy.Services.PurchaseServices.Models;
 
@@ -18,15 +17,21 @@ namespace SunnyBuy.WebApi.Controllers
         }
 
         [HttpGet("{clientId}")]
-        public async Task<List<ListModel>> Get(int clientId)
+        public async Task<PurchaseListModel> Get(int clientId)
         {
-            return await purchaseService.GetPurchaseComplete(clientId);
+            return await purchaseService.GetPurchase(clientId); 
         }
-        
+
         [HttpPost()]
-        public async Task<bool> Post(ListModel model)
+        public async Task<bool> Post(PurchaseListModel model)
         {
             return await purchaseService.PostPurchase(model);
+        }
+
+        [HttpPut()]
+        public async Task<bool> Put([FromBody]PutPurchaseModel model)
+        {
+            return await purchaseService.ConfirmPurchase(model);
         }
     }
 }

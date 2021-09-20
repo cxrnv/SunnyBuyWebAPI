@@ -7,8 +7,8 @@ using SunnyBuy.Services;
 namespace SunnyBuy.WebApi.Controllers
 {
     [Route("[controller]")]
-    [ApiController]
 
+    [ApiController]
     public class ClientController : ControllerBase
     {
         protected readonly ClientService clientService;
@@ -24,7 +24,7 @@ namespace SunnyBuy.WebApi.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<bool> Login(LoginModel model)
+        public async Task<int> Login(LoginModel model)
         {
             return await clientService.Login(model);
         }
@@ -36,27 +36,34 @@ namespace SunnyBuy.WebApi.Controllers
         }
 
         [HttpGet("clients")]
-        public async Task<List<GetModel>> GetAll()
+        public async Task<List<GetClientModel>> GetAll()
         {
             return await clientService.GetAll();
         }
 
-        [HttpGet("{cpf}")]
-        public async Task<GetModel> Get(string cpf)
+        [HttpGet("clients-chat")]
+        public async Task<List<GetClientModel>> GetClientsChat()
         {
-            return await clientService.GetClient(cpf);
+            return await clientService.GetClientsChat();
         }
 
-        [HttpPut()]
-        public async Task<bool> Put([FromBody]PutClientModel model)
+
+        [HttpGet("{clientId}")]
+        public async Task<GetClientModel> Get(int clientId)
+        {
+            return await clientService.GetClient(clientId);
+        }
+
+        [HttpPut("edit")]
+        public async Task<bool> EditClient([FromBody] EditClientModel model)
+        {
+            return await clientService.EditClientData(model);
+        }
+
+        [HttpPut("disable")]
+        public async Task<bool> PutClient([FromBody]PutClientModel model)
         {
             return await clientService.PutClientDisabled(model);
-        }
-
-        [HttpDelete("{cpf}")]
-        public async Task<bool> Delete(string cpf)
-        {
-            return await clientService.DeleteClient(cpf);
         }
     }
 }

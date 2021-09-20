@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SunnyBuy.Domain.Entities;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,5 +22,7 @@ namespace SunnyBuy.Domain
 
         public DateTime DateInclude { get; set; }
         public bool Deleted { get; set; }
+        public bool Sold { get; set; }
+        public IList<Purchase_Cart> Purchase_Carts { get; set; }
     }
 }
